@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Papa Sans';
+    font-weight: 400;
+    src: url('../font/PapaSans/PapaSans-Regular.ttf');
+}
+@font-face {
+    font-family: 'Papa Sans';
+    font-weight: 700;
+    src: url('../font/PapaSans/PapaSans-Bold.ttf');
+}
+@font-face {
+    font-family: 'Papa Sans';
+    font-weight: 900;
+    src: url('../font/PapaSans/PapaSans-Heavy.ttf');
+}

@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="css/font.css" />
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+        <title>Menu - PJ Azerbaijan</title>
+    </head>
+    <body>
+        <header class="sticky-top bg-white shadow">
+            <div class="container-lg">
+                <nav class="navbar navbar-expand-lg border-bottom mb-2">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#" title="Home">
+                            <img class="d-block d-sm-none" src="img/icons/logo.svg" height="20" alt="" />
+                            <img class="d-none d-sm-block" src="img/icons/logo.svg" height="28" alt="" />
+                        </a>
+                        <a class="btn btn-primary login-btn fs-12 px-3 ms-auto me-2 d-xl-none" href="#"> Sign in </a>
+                        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="d-none d-xl-flex gap-2">
+                            <img src="img/icons/globe.svg" width="25" height="25" alt="" />
+                            <select title="language">
+                                <option value="en">English</option>
+                                <option value="az">Azərbaycanca</option>
+                            </select>
+                        </div>
+                    </div>
+                </nav>
+                <div class="collapse navbar-collapse flex-grow-0 d-xl-flex align-items-center justify-content-between" id="navbarCollapse">
+                    <ul class="d-flex flex-column flex-xl-row column-gap-4 fw-heavy fs-18 p-3 py-xl-0">
+                        <li><a target="_blank" rel="noopener" href="https://order.papajohns.az/papajohns.az/10047/?lang=en&modal=0&type=2">Menu</a></li>
+                        <li><a target="_blank" rel="noopener" href="https://papajohns-az.webflow.io/az/offers">Special offers</a></li>
+                        <li><a target="_blank" rel="noopener" href="https://papajohns-az.webflow.io/az/papa-rewards">Papa Rewards</a></li>
+                        <li><a target="_blank" rel="noopener" href="https://papajohns-az.webflow.io/az/papa-talk">Papa Talk</a></li>
+                        <li><a target="_blank" rel="noopener" href="https://papajohns-az.webflow.io/az/about-us">About us</a></li>
+                    </ul>
+                    <a class="btn btn-primary login-btn px-4 d-none d-xl-block" href="#"> Sign in </a>
+                    <div class="d-flex d-xl-none gap-2 border-top py-3">
+                        <img src="img/icons/globe.svg" width="25" height="25" alt="" />
+                        <select title="language">
+                            <option value="en">English</option>
+                            <option value="az">Azərbaycanca</option>
+                        </select>
+                    </div>
+                </div>
+                <nav class="nav nav-pills gap-3 flex-nowrap overflow-auto pb-2" id="categoryNav">
+                    <a class="nav-link" href="#category-pizza">Pizzas</a>
+                    <a class="nav-link" href="#category-sides">Sides</a>
+                    <a class="nav-link" href="#category-pasta">Pasta</a>
+                    <a class="nav-link" href="#category-salads">Salads</a>
+                    <a class="nav-link" href="#category-drinks">Drinks</a>
+                    <a class="nav-link" href="#category-desserts">Desserts</a>
+                    <a class="nav-link" href="#category-sauces">Sauces</a>
+                    <a class="nav-link" href="#category-papadias">Papadias</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="container-lg pb-5" data-bs-spy="scroll" data-bs-target="#categoryNav">
+            <div class="row pb-5">
+                <div class="col-12 col-xl-8" id="foodMenu"></div>
+                <div class="col-12 col-xl-4 py-4 offcanvas-xl offcanvas-end" id="orderOffcanvas" tabindex="-1">
+                    <button class="btn d-xl-none" data-bs-dismiss="offcanvas" data-bs-target="#orderOffcanvas" type="button" aria-label="Close"></button>
+                    <div id="order">
+                        <button class="btn justify-content-start rounded-3 border mb-3" id="order-location-btn" data-bs-toggle="modal" data-bs-target="#locationModal" type="button">
+                            <div>
+                                <img src="img/icons/delivery.svg" height="20" alt="Delivery" />
+                                <span>Delivery order</span>
+                                <i class="fas fa-angle-down ms-auto"></i>
+                            </div>
+                        </button>
+                        <div class="rounded-4 border" id="cart">
+                            <div id="cart-empty">
+                                <img class="mb-2" src="img/cart.png" height="60" alt="Empty cart" />
+                                <p class="fs-14 mt-1 mb-0">Your cart is empty</p>
+                            </div>
+                            <div id="cart-products"></div>
+                            <div class="flex justify-content-between bg-white text-black fs-14 fw-bold border-top pt-3" id="cart-subtotal">
+                                <span>Subtotal</span>
+                                <span class="cart-total-amount price"></span>
+                            </div>
+                        </div>
+                        <div class="py-3" id="promocode">
+                            <input class="form-control rounded-3 fs-14" type="text" placeholder="Have a promo code? Enter it here" />
+                            <button class="btn btn-primary p-2 fs-14" type="button">Activate</button>
+                        </div>
+                        <div class="bg-warning text-white rounded-3 fs-14 mb-3 p-3" id="minimumOrder">
+                            <i class="fas fa-triangle-exclamation fa-xl me-2"></i>
+                            <span>Minimum order amount 10.00 AZN </span>
+                        </div>
+                        <a class="btn btn-primary disabled fs-14 lh-base w-100" id="checkoutBtn" href="#" aria-disabled="true">Proceed to checkout</a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-xl-none fixed-bottom bg-primary text-white p-3" data-bs-toggle="offcanvas" data-bs-target="#orderOffcanvas" role="button">
+                <div class="d-flex justify-content-between align-items-center fs-14">
+                    <span>
+                        <img src="img/icons/basket.svg" height="20" alt="" />
+                        <span class="cart-count">1</span>
+                    </span>
+                    <span class="cart-total-amount price"></span>
+                </div>
+            </div>
+        </main>
+
+        <div class="modal" id="locationModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-fullscreen-lg-down">
+                <div class="modal-content">
+                    <button class="btn-close opacity-75 position-absolute end-0 m-3 p-0" data-bs-dismiss="modal" aria-label="Close" type="button"></button>
+                    <div class="modal-body rounded-5">
+                        <div class="row h-100">
+                            <div class="col-md-7 d-md-flex" id="map-part">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14576.166388652515!2d49.80473291427005!3d40.373799723613736!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4030634e4ec45f67%3A0xa1628495e445ab6a!2sDiv%20Academy!5e0!3m2!1sen!2sus!4v1740935208112!5m2!1sen!2sus"
+                                    height="100%"
+                                    width="100%"
+                                    frameborder="0"
+                                    allowfullscreen
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                ></iframe>
+                            </div>
+                            <div class="col-md-5 order-md-first d-flex flex-column pe-0 py-0">
+                                <div class="row g-2 py-2">
+                                    <div class="col">
+                                        <button class="btn border border-2 text-capitalize fs-14 w-100 px-2 py-1" id="pickupBtn">
+                                            <img src="img/icons/pickup.svg" height="20" alt="Pickup">
+                                            <span>Pickup order</span>
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button class="btn border border-2 border-primary text-capitalize fs-14 w-100 px-2 py-1" id="deliveryBtn">
+                                            <img src="img/icons/delivery.svg" height="20" alt="Pickup">
+                                            <span>Delivery order</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="choosePickupLocation">
+                                    <h5 class="fs-18 fw-bold text-uppercase my-3">Choose pickup location</h5>
+                                    <input class="form-control rounded-3 my-2" id="restaurantSearch" type="text" placeholder="Search for a restaurant" />
+                                    <div class="overflow-auto d-flex flex-column gap-2 pe-1" id="restaurantsScroll"></div>
+                                    <button class="btn btn-primary mt-3">Order here</button>
+                                </div>
+                                <div class="flex flex-column h-100" id="enterDeliveryAddress">
+                                    <h5 class="fs-18 fw-bold text-uppercase my-3">Enter your delivery address</h5>
+                                    <input class="form-control rounded-3 my-2" type="text" placeholder="Delivery address" />
+                                    <button class="btn text-capitalize">
+                                        <i class="fas fa-location-dot"></i>
+                                        <span>Locate automatically</span>
+                                    </button>
+                                    <button class="btn btn-primary mt-auto">Deliver to this address</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container-lg">
+                <div class="row gy-5">
+                    <div class="col-6 col-md-3 col-lg-2">
+                        <h5>Our Company</h5>
+                        <div class="d-flex flex-column gap-2 fs-14">
+                            <a href="https://www.papajohns.az/en/about-us.html" target="_blank" rel="noopener">About Us</a>
+                            <a href="/papajohns.az/store-locator">Store Locator</a>
+                            <a href="https://www.papajohns.az/en/ingredients.html" target="_blank" rel="noopener">Ingredients</a>
+                            <a href="https://www.papajohns.az/en/papa-rewards.html" target="_blank" rel="noopener">Papa Rewards</a>
+                            <a href="https://www.papajohns.az/en/papa-talk.html" target="_blank" rel="noopener">Papa Talk</a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-2 col-lg-2">
+                        <h5>Help</h5>
+                        <div class="d-flex flex-column gap-2 fs-14">
+                            <a href="https://www.papajohns.az/en/contact-us.html" target="_blank" rel="noopener">Contact Us</a>
+                            <a href="https://www.papajohns.az/en/sign-up.html" target="_blank" rel="noopener">Offer Sign Up</a>
+                            <a href="https://www.papajohns.az/en/faq.html" target="_blank" rel="noopener">FAQ</a>
+                            <a href="mailto:support@loyaltyplant.com">Our Support</a>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-5 col-lg-6">
+                        <iframe
+                            src="//email.papajohns.az/p/7NUE-1HG#https://order.papajohns.az/papajohns.az/10047/?lang=en&amp;modal=0&amp;type=2#category_fcbc578b-5bce-413b-a56b-f4302287df6b"
+                            frameborder="0"
+                            scrolling="no"
+                            allow="geolocation"
+                            sandbox="allow-modals allow-downloads allow-top-navigation allow-forms allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
+                            width="275"
+                            height="148"
+                            max-height="148"
+                        ></iframe>
+                    </div>
+                </div>
+                <div class="d-flex align-items-end justify-content-between pt-5">
+                    <h4 class="mb-0">Better Ingredients. Better Pizza.</h4>
+                    <a href="https://www.papajohns.az/en/home.html">
+                        <img src="img/icons/logo-white.svg" height="32" alt="Papa Johns" />
+                    </a>
+                </div>
+            </div>
+            <hr />
+            <div class="container-lg">
+                <div class="d-flex justify-content-between py-2">
+                    <div class="d-flex gap-3 fs-12">
+                        <a href="https://www.papajohns.az/en/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>
+                        <a href="https://www.papajohns.az/en/cookie-policy.html" target="_blank" rel="noopener">Cookies</a>
+                        <a href="https://www.papajohns.az/en/terms-conditions.html" target="_blank" rel="noopener">Terms And Conditions</a>
+                        <a href="https://www.papajohns.az/en/sitemap.html" target="_blank" rel="noopener">Sitemap</a>
+                    </div>
+                    <div class="d-flex gap-4 px-4">
+                        <a href="https://www.facebook.com/papajohns.az/" target="_blank" rel="noopener">
+                            <img src="img/icons/facebook.svg" width="30" height="30" alt="Facebook" />
+                        </a>
+                        <a href="https://www.instagram.com/azpapajohns/" target="_blank" rel="noopener">
+                            <img src="img/icons/instagram.svg" width="30" height="30" alt="Instagram" />
+                        </a>
+                        <a href="https://www.youtube.com/@papajohnsazerbaijan/" target="_blank" rel="noopener">
+                            <img src="img/icons/youtube.svg" width="30" height="30" alt="Youtube" />
+                        </a>
+                        <a href="https://www.tiktok.com/@azpapajohns?lang=ru-RU" target="_blank" rel="noopener">
+                            <img src="img/icons/tiktok.svg" width="30" height="30" alt="Tiktok" />
+                        </a>
+                        <a href="https://www.tripadvisor.com/Restaurant_Review-g293934-d3415853-Reviews-Papa_John_s-Baku_Absheron_Region.html" target="_blank" rel="noopener">
+                            <img src="img/icons/tripadvisor.svg" width="30" height="30" alt="Tripadvisor" />
+                        </a>
+                    </div>
+                </div>
+                <p class="mt-4 fs-14">Payment Methods Available:</p>
+                <img src="/img/payments.png" width="76" height="27" alt="" />
+                <p class="fs-12 py-3">
+                    ©2024 Papa Johns International, Inc. All rights reserved. Product prices may change. All beverage-related trademarks are registered trademarks of our supplier partners. Some offers require the purchase of multiple pizzas. Some offers may only be available online. Promotions, combos and discounts are not cumulative. Images of products on the site may differ from the actual
+                    appearance of the product. Orders are delivered within our dedicated delivery area. Delivery is carried out when ordering from 10 AZN.
+                </p>
+            </div>
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="js/data.js"></script>
+        <script src="js/render.js"></script>
+        <script src="js/modal.js"></script>
+        <script src="js/location.js"></script>
+        <script src="js/cart.js"></script>
+    </body>
+</html>
